@@ -1,14 +1,8 @@
-# Medical Report Analyzer AI
+# Medical-report-anlyzer-AI
 
 This is a web app designed to analyze medical reports, such as PDFs and images, and explain the results in simpler terms. Built with Next.js, Groq API, and LlamaParse, the app parses medical documents, processes the data with the Llama model via the Groq API, and generates easy-to-understand outputs.
 
-<img width="1850" alt="Xnapper-2024-12-08-19 00 55" src="image.png">
-
-## Live Demo
-
-
-https://github.com/user-attachments/assets/eed34700-f8c2-4710-b08b-b6956f6da994
-
+<img width="1850" alt="" src="image.png">
 
 
 ## Features
@@ -46,8 +40,8 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/medical-report-analyzer-ai.git
-   cd medical-report-analyzer-ai
+   git clone https://github.com/kunalg12/medical-report-analyzer-ai.git
+   cd medical-report-anlyzer-ai
    ```
 
 2. Install dependencies:
@@ -62,6 +56,7 @@ To run this project locally, follow these steps:
 
    ```
    GROQ_API_KEY=your_groq_api_key
+   LLAMA_CLOUD_API_KEY=your_llama_cloud_api_key
    ```
 
 4. Run the app in development mode:
