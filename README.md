@@ -2,7 +2,7 @@
 
 This is a web app designed to analyze medical reports, such as PDFs and images, and explain the results in simpler terms. Built with Next.js, Groq API, and LlamaParse, the app parses medical documents, processes the data with the Llama model via the Groq API, and generates easy-to-understand outputs.
 
-<img width="1850" alt="Xnapper-2024-12-08-19 00 55" src="https://github.com/user-attachments/assets/15bc863f-e3a6-4715-85a5-8032ea13b265">
+<img width="1850" alt="Xnapper-2024-12-08-19 00 55" src="image.png">
 
 ## Live Demo
 
