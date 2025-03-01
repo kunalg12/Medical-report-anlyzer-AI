@@ -1,78 +1,61 @@
-# Medical-report-anlyzer-AI
+# AI-Powered Medical Report Analyzer
 
-This is a web app designed to analyze medical reports, such as PDFs and images, and explain the results in simpler terms. Built with Next.js, Groq API, and LlamaParse, the app parses medical documents, processes the data with the Llama model via the Groq API, and generates easy-to-understand outputs.
+A smart web app that simplifies medical reports by analyzing uploaded PDFs and images, extracting text, and providing concise, easy-to-understand explanations. Powered by Next.js, Groq API, and LlamaParse.
 
-<img width="1850" alt="" src="image.png">
+## 🔍 Features
 
+- Upload medical reports in PDF or image format.
+- Extract text automatically using LlamaParse.
+- AI-powered analysis with Groq API for clear, simplified insights.
+- Quick, real-time processing with a user-friendly interface.
 
-## Features
+## 🛠 Technologies Used
 
-- Upload medical reports in PDF or image formats.
-- Automatically parse and extract text from the uploaded file using LlamaParse.
-- Analyze the extracted data with the Groq API, powered by the Llama model.
-- Receive detailed, user-friendly explanations of the report.
-- Supports real-time processing and output generation.
+- **Next.js** – Frontend and backend framework.
+- **Groq API** – AI-driven medical report interpretation.
+- **LlamaParse** – Text extraction from PDFs and images.
+- **React** – Interactive UI components.
 
-## Behind the code
-
-<img width="445" alt="Xnapper-2024-12-08-19 02 05" src="https://github.com/user-attachments/assets/db285967-0cab-4f5c-aa2d-d84dbccb567e">
-
-
-## Technologies Used
-
-- **Next.js**: For building the frontend and backend logic of the app.
-- **Groq API**: For analyzing medical report data using the Llama model.
-- **LlamaParse**: For parsing text from medical reports in image or PDF format.
-- **React**: For building the interactive UI components.
-
-## Setup
-
-To run this project locally, follow these steps:
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js (v18 or higher)
 - npm or yarn
-- A Groq API key for accessing the Llama model
+- Groq API key for AI analysis
 
-### Steps
+### Setup
 
-1. Clone the repository:
-
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/kunalg12/medical-report-analyzer-ai.git
-   cd medical-report-anlyzer-ai
+   cd medical-report-analyzer-ai
    ```
-
-2. Install dependencies:
-
+2. **Install dependencies:**
    ```bash
    npm install
    # or
    yarn install
    ```
-
-3. Set up environment variables. Create a `.env.local` file at the root of the project with the following content:
-
+3. **Configure environment variables:**
+   Create a `.env.local` file and add:
    ```
    GROQ_API_KEY=your_groq_api_key
    LLAMA_CLOUD_API_KEY=your_llama_cloud_api_key
    ```
-
-4. Run the app in development mode:
-
+4. **Run the app:**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
+5. **Access the app:** Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-5. Visit [http://localhost:3000](http://localhost:3000) in your browser.
+## 🏥 How It Works
 
-## How It Works
+1. **Upload** a medical report (PDF/Image).
+2. **Extract** text using LlamaParse.
+3. **Analyze** with the Groq API for AI-driven insights.
+4. **Receive** a clear, patient-friendly explanation of the report.
 
-1. **Upload Report**: Users upload a medical report in PDF or image format.
-2. **Parsing**: LlamaParse extracts text from the document.
-3. **Analysis**: The extracted text is sent to the Groq API for analysis using the Llama model.
-4. **Output**: The analyzed data is returned and displayed as simplified, easy-to-understand explanations for the user.
-
+This tool helps users quickly understand their medical reports without complex jargon. 🚀
