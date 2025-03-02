@@ -6,6 +6,9 @@ import {
   Stethoscope,
   ClipboardList,
   Info,
+  TrendingUp,
+  TrendingDown,
+  CheckCircle,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -72,63 +75,81 @@ export default function ResultsCard({ analysisResult }: ResultsCardProps) {
   const medicalParameters = parseParameters(originalDocument);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 py-10">
-      <Card className="border-2 border-blue-100 rounded-xl shadow-lg bg-white">
-        <CardHeader className="bg-blue-50 border-b-2 border-blue-100 p-6">
+    <div className="max-w-4xl mx-auto space-y-6">
+      <Card className="backdrop-blur-md bg-white/80 border border-gray-200/50 shadow-xl rounded-2xl hover:shadow-2xl transition-all duration-300">
+        <CardHeader className="border-b border-gray-100 bg-gradient-to-r from-blue-50 to-violet-50 rounded-t-2xl">
           <div className="flex items-center space-x-4">
-            <Stethoscope className="w-8 h-8 text-orange-600" />
-            <CardTitle className="text-2xl font-bold text-blue-900">
-              Medical Report Analysis
-            </CardTitle>
+            <div className="p-2 bg-white rounded-xl shadow-sm">
+              <Stethoscope className="w-8 h-8 text-blue-600" />
+            </div>
+            <div>
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                Analysis Results
+              </CardTitle>
+              <p className="text-sm text-gray-600 mt-1">
+                Detailed breakdown of your medical report
+              </p>
+            </div>
           </div>
         </CardHeader>
 
-        <CardContent className="p-8 space-y-8">
-          {/* Medical Parameters Section */}
-          <section>
-            <h2 className="text-xl font-semibold text-blue-800 mb-6 flex items-center">
-              <ClipboardList className="w-6 h-6 mr-3 text-orange-600" />
-              Key Health Indicators
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
+        <CardContent className="p-6 space-y-8">
+          {/* Parameters Grid */}
+          <section className="space-y-4">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="p-2 bg-blue-50 rounded-lg">
+                <ClipboardList className="w-5 h-5 text-blue-600" />
+              </div>
+              <h2 className="text-xl font-semibold text-gray-900">
+                Health Parameters
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {Object.entries(medicalParameters).map(([param, details]) => {
                 const status = getParameterStatus(details.value, details.range);
-                const statusColors = {
-                  low: "bg-blue-50 border-blue-200 text-blue-800",
-                  normal: "bg-green-50 border-green-200 text-green-800",
-                  high: "bg-red-50 border-red-200 text-red-800",
+                const statusConfig = {
+                  low: {
+                    icon: <TrendingDown className="w-4 h-4" />,
+                    class: "bg-blue-50/50 border-blue-200 text-blue-900",
+                    badge: "bg-blue-100 text-blue-700",
+                  },
+                  normal: {
+                    icon: <CheckCircle className="w-4 h-4" />,
+                    class: "bg-green-50/50 border-green-200 text-green-900",
+                    badge: "bg-green-100 text-green-700",
+                  },
+                  high: {
+                    icon: <TrendingUp className="w-4 h-4" />,
+                    class: "bg-red-50/50 border-red-200 text-red-900",
+                    badge: "bg-red-100 text-red-700",
+                  },
                 };
 
                 return (
                   <div
                     key={param}
                     className={`
-                      ${statusColors[status]} 
-                      p-4 rounded-lg border-2 flex justify-between items-center
+                      ${statusConfig[status].class}
+                      p-4 rounded-xl border backdrop-blur-sm
                       transition-all duration-300 hover:shadow-md
                     `}
                   >
-                    <div className="flex items-center space-x-3">
-                      {status === "low" && (
-                        <AlertCircle className="w-5 h-5 text-blue-600" />
-                      )}
-                      {status === "high" && (
-                        <AlertCircle className="w-5 h-5 text-red-600" />
-                      )}
-                      <span className="font-medium">{param}</span>
-                    </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex justify-between items-start">
+                      <div className="space-y-1">
+                        <div className="flex items-center space-x-2">
+                          {statusConfig[status].icon}
+                          <span className="font-medium">{param}</span>
+                        </div>
+                        <div className="text-sm opacity-70">
+                          Range: {details.range}
+                        </div>
+                      </div>
                       <Badge
-                        variant={
-                          status === "normal" ? "default" : "destructive"
-                        }
-                        className="text-sm font-medium"
+                        className={`${statusConfig[status].badge} text-sm font-medium px-2 py-0.5`}
                       >
                         {details.value}
                       </Badge>
-                      <span className="text-xs opacity-70">
-                        {details.range}
-                      </span>
                     </div>
                   </div>
                 );
@@ -136,26 +157,34 @@ export default function ResultsCard({ analysisResult }: ResultsCardProps) {
             </div>
           </section>
 
-          <Separator className="my-6 bg-blue-200" />
+          <Separator className="bg-gradient-to-r from-blue-200 via-violet-200 to-blue-200" />
 
-          {/* Detailed Analysis Section */}
-          <section>
-            <h2 className="text-xl font-semibold text-blue-800 mb-6 flex items-center">
-              <Heart className="w-6 h-6 mr-3 text-orange-600" />
-              Detailed Analysis
-            </h2>
-            <div className="prose prose-blue max-w-full text-blue-800 space-y-4">
+          {/* Analysis Section */}
+          <section className="space-y-4">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="p-2 bg-violet-50 rounded-lg">
+                <Heart className="w-5 h-5 text-violet-600" />
+              </div>
+              <h2 className="text-xl font-semibold text-gray-900">
+                Detailed Analysis
+              </h2>
+            </div>
+
+            <div className="prose prose-blue max-w-full">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
                   h2: ({ node, ...props }) => (
                     <h2
                       {...props}
-                      className="text-lg font-semibold text-blue-700 mt-4 mb-2 flex items-center"
+                      className="text-lg font-semibold text-gray-800 mt-6 mb-3 flex items-center space-x-2"
                     >
-                      <Info className="w-5 h-5 mr-2 text-orange-600" />
-                      {props.children}
+                      <Info className="w-5 h-5 text-violet-600" />
+                      <span>{props.children}</span>
                     </h2>
+                  ),
+                  p: ({ node, ...props }) => (
+                    <p {...props} className="text-gray-600 leading-relaxed" />
                   ),
                 }}
               >
