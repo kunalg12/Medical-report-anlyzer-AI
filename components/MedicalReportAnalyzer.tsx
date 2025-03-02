@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { Stethoscope } from "lucide-react";
-// import AnalysisSteps from "./AnalysisSteps";
 import UploadCard from "./UploadCard";
-// import ResultsCard from "./ResultsCard";
 
 export default function MedicalReportAnalyzer() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -27,7 +25,6 @@ export default function MedicalReportAnalyzer() {
           <Stethoscope className="w-10 h-10 mr-3 text-orange-600" />
           <h1 className="text-4xl font-extrabold">Med-X AI</h1>
         </div>
-        {/* <AnalysisSteps /> */}
       </div>
 
       <UploadCard
